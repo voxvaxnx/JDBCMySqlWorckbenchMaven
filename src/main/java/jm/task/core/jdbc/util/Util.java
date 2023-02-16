@@ -26,29 +26,9 @@ public class Util {
                 } catch (SQLException e) {
                         throw new RuntimeException(e);
                 }
-
-
         }
 }
 
 
 
 
-                //private static final Connection connection;
-
-
-       /* private static final Driver driver;
-
-        static {
-                try {
-                        driver = new com.mysql.cj.jdbc.Driver();
-                        DriverManager.registerDriver(driver);
-                        connection = DriverManager.getConnection(URL, USERNAME, PASS);
-                } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                }
-        }
-
-        public static Connection getConnection() {
-                return connection;
-        }*/
