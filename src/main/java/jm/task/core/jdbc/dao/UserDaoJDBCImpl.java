@@ -20,6 +20,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void createUsersTable() {
         try (Statement stat = Util.getConnection().createStatement()) {
             stat.execute("CREATE TABLE `testdb`.`users` (`id` BIGINT NOT NULL AUTO_INCREMENT, `name` VARCHAR(50) NOT NULL, `lastName` VARCHAR(45) NOT NULL, `age` INT(200) NOT NULL, PRIMARY KEY (`id`));");
+            Util.getConnection().close();
         } catch (SQLException ignored) {
 
         }
@@ -28,6 +29,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() {
         try (Statement stat = Util.getConnection().createStatement()) {
             stat.execute("DROP TABLE users");
+            Util.getConnection().close();
         } catch (SQLException ignored) {
 
         }
@@ -39,19 +41,19 @@ public class UserDaoJDBCImpl implements UserDao {
             stat.setString(2, lastName);
             stat.setString(3, String.valueOf(age));
             stat.executeUpdate();
-            System.out.println("User c именем - " + name + " добавлен в базу");
+            Util.getConnection().close();
 
         } catch (SQLException e) {
-           // System.out.println("из блока сэйв");
+
 
         }
     }
 
     public void removeUserById(long id) {
-        try (final PreparedStatement stat =
-                     Util.getConnection().prepareStatement("DELETE FROM users WHERE id = (?)")) {
+        try (final PreparedStatement stat = Util.getConnection().prepareStatement("DELETE FROM users WHERE id = (?)")) {
             stat.setString(1, String.valueOf(id));
             stat.executeUpdate();
+            Util.getConnection().close();
 
         } catch (SQLException e) {
 
@@ -67,16 +69,21 @@ public class UserDaoJDBCImpl implements UserDao {
                 userList.add(user);
             }
 
+            Util.getConnection().close();
+
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         return userList;
+
     }
 
     public void cleanUsersTable() {
         try (Statement stat = Util.getConnection().createStatement()) {
             stat.execute("DELETE FROM users");
+            Util.getConnection().close();
         } catch (SQLException e) {
 
         }
