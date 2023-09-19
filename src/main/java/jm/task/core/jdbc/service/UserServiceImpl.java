@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
         userDao.removeUserById(id);
 
     }
-
     public List<User> getAllUsers() {
        return userDao.getAllUsers();
     }
