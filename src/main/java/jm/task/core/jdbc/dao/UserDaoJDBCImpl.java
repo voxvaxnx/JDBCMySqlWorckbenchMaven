@@ -26,6 +26,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     ///hftghdfgh
     //dsasdasdfasd
+    //56456456
 
     public void dropUsersTable() {
         try (Connection connection = Util.getConnection(); Statement stat = connection.createStatement()) {
