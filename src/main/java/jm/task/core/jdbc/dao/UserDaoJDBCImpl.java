@@ -23,6 +23,9 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+
+    ///hftghdfgh
+
     public void dropUsersTable() {
         try (Connection connection = Util.getConnection(); Statement stat = connection.createStatement()) {
             stat.execute("DROP TABLE users");
